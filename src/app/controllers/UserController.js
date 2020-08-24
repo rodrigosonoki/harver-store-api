@@ -114,7 +114,8 @@ const forgotPassword = async (req, res) => {
     );
 
     //SEND EMAIL
-    await Queue.add("ForgotPasswordMail", { content });
+    if (process.env.ENV !== "development")
+      await Queue.add("ForgotPasswordMail", { content });
 
     return res.status(200).send();
   } catch (err) {

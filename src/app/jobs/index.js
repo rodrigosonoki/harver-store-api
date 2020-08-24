@@ -1,9 +1,12 @@
-const RegistrationMail = require("./RegistrationMail");
-const ForgotPasswordMail = require("./ForgotPasswordMail");
-
 const jobs = {
-  RegistrationMail,
-  ForgotPasswordMail,
+  RegistrationMail: {
+    key: "RegistrationMail",
+    options: {},
+  },
+  ForgotPasswordMail: {
+    key: "ForgotPasswordMail",
+    options: {},
+  },
 };
 
 module.exports = jobs;
