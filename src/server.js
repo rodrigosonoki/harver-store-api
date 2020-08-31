@@ -31,4 +31,4 @@ mongoose.connect(
   () => console.log(`Connected to MongoDB on ${process.env.ENV} environment.`)
 );
 
-app.listen(3333, () => console.log("Listening on PORT 3333"));
+app.listen(3001, () => console.log("Listening on PORT 3333"));
