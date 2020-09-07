@@ -2,8 +2,8 @@ const Product = require("../models/Product");
 const Store = require("../models/Store");
 const Sku = require("../models/Sku");
 
-const createProduct = async (req, res) => {
-  const { name, description, images, price } = req.body;
+exports.create = async (req, res) => {
+  const { name, description, images, price, model } = req.body;
 
   const store = await Store.findOne({
     users: req.user.id,
@@ -21,6 +21,7 @@ const createProduct = async (req, res) => {
       images,
       price,
       store,
+      model,
     });
     product.save();
 
@@ -39,7 +40,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-const getProducts = async (req, res) => {
+exports.get = async (req, res) => {
   const store = await Store.findOne({
     users: req.user.id,
   });
@@ -55,17 +56,11 @@ const getProducts = async (req, res) => {
   }
 };
 
-const getProductById = async (req, res) => {
+exports.getById = async (req, res) => {
   const id = req.params.id;
   const product = await Product.findById(id);
 
   if (!product) return res.status(404).json({ msg: "Produto não encontrado" });
 
   return res.status(200).json(product);
-};
-
-module.exports = {
-  createProduct,
-  getProducts,
-  getProductById,
 };

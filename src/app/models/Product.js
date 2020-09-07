@@ -21,6 +21,7 @@ const productSchema = new mongoose.Schema(
       ref: "Store",
       required: true,
     },
+    type: String,
     createdAt: {
       type: Date,
       default: new Date(),

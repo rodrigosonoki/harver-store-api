@@ -3,7 +3,7 @@ const User = require("../models/User");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
-const addUserToStore = async (req, res) => {
+exports.addUser = async (req, res) => {
   const { email, password } = req.body;
 
   //FIND STORE
@@ -50,7 +50,7 @@ const addUserToStore = async (req, res) => {
   }
 };
 
-const getStoreInfo = async (req, res) => {
+exports.get = async (req, res) => {
   const store = await Store.findOne(
     {
       users: req.user.id,
@@ -64,7 +64,7 @@ const getStoreInfo = async (req, res) => {
   return res.status(200).json(store);
 };
 
-const listUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
   const store = await Store.findOne(
     {
       users: req.user.id,
@@ -82,10 +82,4 @@ const listUsers = async (req, res) => {
   });
 
   return res.status(200).json(store);
-};
-
-module.exports = {
-  addUserToStore,
-  getStoreInfo,
-  listUsers,
 };

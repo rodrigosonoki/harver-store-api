@@ -1,21 +1,13 @@
 const router = require("express").Router();
 
-const {
-  addUserToStore,
-  getStoreInfo,
-  listUsers,
-} = require("../controllers/StoreController");
-const {
-  createProduct,
-  getProducts,
-  getProductById,
-} = require("../controllers/ProductController");
+const StoreController = require("../controllers/StoreController");
+const ProductController = require("../controllers/ProductController");
 
-router.post("/newuser", addUserToStore);
-router.post("/createproduct", createProduct);
-router.get("/getproducts", getProducts);
-router.get("/product/:id", getProductById);
-router.get("/info", getStoreInfo);
-router.get("/users", listUsers);
+router.post("/products/add", ProductController.create);
+router.get("/products/get", ProductController.get);
+router.get("/products/:id", ProductController.getById);
+router.post("/users/add", StoreController.addUser);
+router.get("/get", StoreController.get);
+router.get("/users/get", StoreController.getUsers);
 
 module.exports = router;
